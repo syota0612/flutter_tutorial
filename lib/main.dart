@@ -13,15 +13,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // ホットリロード時に再ビルド
     return MaterialApp(
-      title: 'Flutter Material Design',
+      title: 'Column & Row',
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: Center(
-          child: Container(
-            color: Colors.blue,
-            width: 300.0,
-            height: 300.0,
-            child: const Text('word'),
-            transform: Matrix4.rotationZ(0.1),
+          child: Row(
+            children: <Widget>[
+              Container(color: Colors.blue, width: 100, height:100),
+              Container(color: Colors.red, width: 100, height:100),
+            ],
           ),
         ),
       ),
