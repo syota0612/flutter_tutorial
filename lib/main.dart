@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
             width: 300.0,
             height: 300.0,
             child: const Text('word'),
-            padding: const EdgeInsets.only(top:50.0),
+            margin: const EdgeInsets.all(100.0),
           ),
         ),
       ),
