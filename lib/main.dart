@@ -10,14 +10,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // ホットリロード時に再ビルド
     return MaterialApp(
-        title: 'Welcome to Flutter',
-        home: Scaffold(
-            appBar: AppBar(
-              title: const Text('Welcome to Flutter'),
-            ),
-            body: const Center(
-              child: RandomWords(),
-            )));
+        title: 'Startup Name Generator',
+        home: RandomWords(),
+    );
   }
 }
 
