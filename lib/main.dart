@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
             width: 300.0,
             height: 300.0,
             child: const Text('word'),
-            alignment: Alignment.center,
+            transform: Matrix4.rotationZ(0.1),
           ),
         ),
       ),
