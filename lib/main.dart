@@ -13,14 +13,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // ホットリロード時に再ビルド
     return MaterialApp(
-      title: 'Column & Row',
+      title: 'Alignment',
       home: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
           children: <Widget>[
-            Container(color: Colors.blue, width: 100, height: 100),
-            Container(color: Colors.red, width: 100, height: 100),
+            Expanded(
+              child: Container(color: Colors.blue),
+            ),
+            Expanded(
+              flex:2,
+              child: Container(color: Colors.red),
+            ),
+            Expanded(
+              child: Container(color: Colors.green),
+            ),
+            Expanded(
+              child: Container(color: Colors.orange),
+            ),
           ],
         ),
       ),
