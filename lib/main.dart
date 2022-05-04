@@ -13,22 +13,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // ホットリロード時に再ビルド
     return MaterialApp(
-      title: 'Alignment',
+      title: 'Direction',
       home: Container(
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Container(color: Colors.blue),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          verticalDirection: VerticalDirection.up,
+          children: const <Widget>[
+            Text(
+              'Direction',
+              style: TextStyle(color: Colors.blue, fontSize: 30),
             ),
-            Expanded(
-              flex:2,
-              child: Container(color: Colors.red),
-            ),
-            Expanded(
-              child: Container(color: Colors.green),
-            ),
-            Expanded(
-              child: Container(color: Colors.orange),
+            Text(
+              'Direction',
+              style: TextStyle(color: Colors.red, fontSize: 20)
             ),
           ],
         ),
