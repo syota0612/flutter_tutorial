@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import './widgets/RandomWord.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  debugPaintSizeEnabled = true;
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key); // 初期ビルド時のみ
@@ -10,8 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // ホットリロード時に再ビルド
     return MaterialApp(
-        title: 'Startup Name Generator',
-        home: RandomWords(),
+      title: 'Startup Name Generator',
+      home: RandomWords(),
     );
   }
 }
