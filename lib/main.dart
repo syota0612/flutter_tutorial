@@ -14,16 +14,21 @@ class MyApp extends StatelessWidget {
     // ホットリロード時に再ビルド
     return MaterialApp(
       title: 'Column & Row',
-      home: Scaffold(
-        backgroundColor: Colors.black,
-        body: Center(
-          child: Column(
+      home: Row(
+        children: <Widget>[
+          Column(
             children: <Widget>[
-              Container(color: Colors.blue, width: 100, height:100),
-              Container(color: Colors.red, width: 100, height:100),
+              Container(color: Colors.blue, width:100, height:100),
+              Container(color: Colors.red, width:100, height:100),
             ],
           ),
-        ),
+          Column(
+            children: <Widget>[
+              Container(color: Colors.green, width: 100, height: 100),
+              Container(color: Colors.orange, width: 100, height: 100),
+            ],
+          )
+        ]
       ),
     );
   }
