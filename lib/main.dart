@@ -11,12 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const data = [
-      Text("item0"),
-      Text("item1"),
-      Text("item2"),
-      Text("item3"),
-      Text("item4"),
+    final list = [
+      "メッセージ",
+      "メッセージ",
+      "メッセージ",
+      "メッセージ",
+      "メッセージ",
     ];
     // ホットリロード時に再ビルド
     return MaterialApp(
@@ -24,23 +24,25 @@ class MyApp extends StatelessWidget {
             appBar: AppBar(
               title: const Text('ListView'),
             ),
-            body: ListView(
-              children: [
-                _menuitem('メニュー1', Icon(Icons.settings)),
-                _menuitem('メニュー2', Icon(Icons.map)),
-                _menuitem('メニュー3', Icon(Icons.room)),
-                _menuitem('メニュー4', Icon(Icons.local_shipping)),
-                _menuitem('メニュー5', Icon(Icons.airplanemode_active)),
-              ],
-            )));
+            body: ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+              if (index >= list.length) {
+                list.addAll([
+                  "メッセージ",
+                  "メッセージ",
+                  "メッセージ",
+                  "メッセージ",
+                ]);
+              }
+              return _messageItem(list[index]);
+            })));
   }
 
-  Widget _menuitem(String title, Icon icon) {
+  Widget _messageItem(String title) {
     return Container(
       decoration: const BoxDecoration(
           border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
       child: ListTile(
-        leading: icon,
         title: Text(
           title,
           style: const TextStyle(
