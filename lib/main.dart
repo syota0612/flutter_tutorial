@@ -11,31 +11,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final list = [
-      "メッセージ",
-      "メッセージ",
-      "メッセージ",
-      "メッセージ",
-      "メッセージ",
-      "メッセージ",
-      "メッセージ",
-      "メッセージ",
-    ];
+    final list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     // ホットリロード時に再ビルド
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
               title: const Text('ListView'),
             ),
-            body: ListView.separated(
-              itemBuilder: (BuildContext context, int index) {
+            body: ListView.builder(
+              scrollDirection: Axis.horizontal,
+               itemBuilder: (BuildContext context, int index) {
+                if (index >= list.length) {
+                  list.addAll(["0","1","2","3","4","5","6","7","8","9",]);
+                }
                 return _messageItem(list[index]);
               },
-              separatorBuilder: (BuildContext context, int index) {
-                return separatorItem();
-              },
-              itemCount: list.length,
-            )));
+            )
+          )
+        );
   }
 
   Widget separatorItem() {
@@ -44,22 +37,17 @@ class MyApp extends StatelessWidget {
 
   Widget _messageItem(String title) {
     return Container(
+      width: 100,
       decoration: const BoxDecoration(
           border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
-      child: ListTile(
-        title: Text(
+      child: Center(
+        child: Text(
           title,
           style: const TextStyle(
             color: Colors.black,
-            fontSize: 18.0,
+            fontSize: 20.0,
           ),
         ),
-        onTap: () {
-          print('onTap calld.');
-        },
-        onLongPress: () {
-          print('onLongPress calld.');
-        },
       ),
     );
   }
