@@ -17,6 +17,9 @@ class MyApp extends StatelessWidget {
       "メッセージ",
       "メッセージ",
       "メッセージ",
+      "メッセージ",
+      "メッセージ",
+      "メッセージ",
     ];
     // ホットリロード時に再ビルド
     return MaterialApp(
@@ -24,18 +27,19 @@ class MyApp extends StatelessWidget {
             appBar: AppBar(
               title: const Text('ListView'),
             ),
-            body: ListView.builder(
-                itemBuilder: (BuildContext context, int index) {
-              if (index >= list.length) {
-                list.addAll([
-                  "メッセージ",
-                  "メッセージ",
-                  "メッセージ",
-                  "メッセージ",
-                ]);
-              }
-              return _messageItem(list[index]);
-            })));
+            body: ListView.separated(
+              itemBuilder: (BuildContext context, int index) {
+                return _messageItem(list[index]);
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return separatorItem();
+              },
+              itemCount: list.length,
+            )));
+  }
+
+  Widget separatorItem() {
+    return Container(height: 10, color: Colors.orange);
   }
 
   Widget _messageItem(String title) {
