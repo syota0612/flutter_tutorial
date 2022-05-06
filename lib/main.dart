@@ -11,44 +11,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    final list = [
+      _photoItem("pic0"),
+      _photoItem("pic1"),
+      _photoItem("pic2"),
+      _photoItem("pic3"),
+      _photoItem("pic4"),
+      _photoItem("pic5"),
+    ];
     // ホットリロード時に再ビルド
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
-              title: const Text('ListView'),
+              title: const Text('GridView'),
             ),
-            body: ListView.builder(
-              scrollDirection: Axis.horizontal,
-               itemBuilder: (BuildContext context, int index) {
-                if (index >= list.length) {
-                  list.addAll(["0","1","2","3","4","5","6","7","8","9",]);
-                }
-                return _messageItem(list[index]);
-              },
-            )
-          )
-        );
+            body: GridView.count(crossAxisCount: 2, children: list)));
   }
 
-  Widget separatorItem() {
-    return Container(height: 10, color: Colors.orange);
-  }
-
-  Widget _messageItem(String title) {
+  Widget _photoItem(String image) {
+    final assetsImage = "./assets/img/" + image + ".png";
     return Container(
-      width: 100,
-      decoration: const BoxDecoration(
-          border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
-      child: Center(
-        child: Text(
-          title,
-          style: const TextStyle(
-            color: Colors.black,
-            fontSize: 20.0,
-          ),
-        ),
-      ),
+      child: Image.asset(assetsImage, fit: BoxFit.cover,),
     );
   }
 }
