@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
               title: const Text('GridView'),
             ),
             body: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 150,
               ),
               itemBuilder: (BuildContext context, int index) {
                 if (index >= grid.length) {
