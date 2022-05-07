@@ -11,33 +11,48 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final list = [
-      _photoItem("pic0"),
-      _photoItem("pic1"),
-      _photoItem("pic2"),
-      _photoItem("pic3"),
-      _photoItem("pic4"),
-      _photoItem("pic5"),
+    final grid = [
+      "pic0",
+      "pic1",
+      "pic2",
+      "pic3",
+      "pic4",
+      "pic5",
     ];
+    // final list = [
+    //   _photoItem("pic0"),
+    //   _photoItem("pic1"),
+    //   _photoItem("pic2"),
+    //   _photoItem("pic3"),
+    //   _photoItem("pic4"),
+    //   _photoItem("pic5"),
+    // ];
     // ホットリロード時に再ビルド
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
               title: const Text('GridView'),
             ),
-            body: GridView.extent(
-              maxCrossAxisExtent: 100,
-              padding: const EdgeInsets.all(4),
-              mainAxisSpacing: 4,
-              crossAxisSpacing: 4,
-              children: list,
+            body: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+              ),
+              itemBuilder: (BuildContext context, int index) {
+                if (index >= grid.length) {
+                  grid.addAll(["pic0", "pic1", "pic2", "pic3", "pic4", "pic5",]);
+                }
+                return _photoItem(grid[index]);
+              },
             )));
   }
 
   Widget _photoItem(String image) {
     final assetsImage = "./assets/img/" + image + ".png";
     return Container(
-      child: Image.asset(assetsImage, fit: BoxFit.cover,),
+      child: Image.asset(
+        assetsImage,
+        fit: BoxFit.cover,
+      ),
     );
   }
 }
