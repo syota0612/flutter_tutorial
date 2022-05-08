@@ -18,7 +18,13 @@ class MyApp extends StatelessWidget {
           title: const Text('Stack'),
         ),
         body: Stack(
+          alignment: Alignment.bottomRight,
           children: <Widget>[
+            SizedBox(
+              width: 400.0,
+              height: 400.0,
+              child: Container(color: Colors.orange,)
+            ),
             Positioned(
               left: 20.0,
               top: 20.0,
@@ -40,6 +46,10 @@ class MyApp extends StatelessWidget {
               height: 100.0,
               child: Container(color: Colors.orange,),
             ),
+            const Text('Test'),
+            // const Center(
+            //   child: Text('Test'),
+            // ),
           ],
         )
       )
