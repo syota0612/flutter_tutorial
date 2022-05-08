@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import './clickGood.dart';
+
 void main() {
   debugPaintSizeEnabled = true;
   runApp(const MyApp());
@@ -13,21 +15,13 @@ class MyApp extends StatelessWidget {
   // ホットリロード時に再ビルド
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Stateful',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Stack'),
+          title: const Text('Stateful'),
         ),
-        body: Card(
-          margin: const EdgeInsets.all(50.0),
-          child: Container(
-            margin: const EdgeInsets.all(10.0),
-            width: 300,
-            height: 100,
-            child: const Text(
-              'Card',
-              style: TextStyle(fontSize: 30),
-            )
-          )
+        body: const Center(
+          child: ClickGood(),
         )
       )
     );
