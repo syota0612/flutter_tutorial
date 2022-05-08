@@ -19,16 +19,27 @@ class MyApp extends StatelessWidget {
         ),
         body: Stack(
           children: <Widget>[
-            Container(
-              width: 100,
-              height: 100,
-              color: Colors.green,
+            Positioned(
+              left: 20.0,
+              top: 20.0,
+              width: 300.0,
+              height: 300.0,
+              child: Container(color: Colors.blue,),
             ),
-            Container(
-              width: 50,
-              height: 80,
-              color: Colors.orange,
-            )
+            Positioned(
+              left: 10.0,
+              top: 10.0,
+              width: 100.0,
+              height: 100.0,
+              child: Container(color: Colors.green,),
+            ),
+            Positioned(
+              left: 120.0,
+              top: 120.0,
+              width: 100.0,
+              height: 100.0,
+              child: Container(color: Colors.orange,),
+            ),
           ],
         )
       )
