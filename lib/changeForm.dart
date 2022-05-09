@@ -37,9 +37,14 @@ class _ChangeFormState extends State<ChangeForm> {
             enabled: true,
             maxLength: 10,
             maxLengthEnforcement: MaxLengthEnforcement.none,
-            style: const TextStyle(color: Colors.red),
-            obscureText: false,
+            style: const TextStyle(color: Colors.black),
+            obscureText: true,
             maxLines: 1,
+            decoration: const InputDecoration(
+              icon: Icon(Icons.face),
+              hintText: 'お名前を教えてください',
+              labelText: '名前 *',
+            ),
             onChanged: _handleText,
           )
         ],
