@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import './clickGood.dart';
+// import './clickGood.dart';
+import './changeForm.dart';
 
 void main() {
-  debugPaintSizeEnabled = true;
+  // debugPaintSizeEnabled = true;
   runApp(const MyApp());
 }
 
@@ -15,15 +16,13 @@ class MyApp extends StatelessWidget {
   // ホットリロード時に再ビルド
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Stateful',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Stateful'),
-        ),
-        body: const Center(
-          child: ClickGood(),
-        )
-      )
-    );
+        title: 'Form',
+        home: Scaffold(
+            appBar: AppBar(
+              title: const Text('Form'),
+            ),
+            body: const Center(
+              child: ChangeForm(),
+            )));
   }
 }
