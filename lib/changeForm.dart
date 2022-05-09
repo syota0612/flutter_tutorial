@@ -11,12 +11,29 @@ class ChangeForm extends StatefulWidget {
 }
 
 class _ChangeFormState extends State<ChangeForm> {
+  final TextEditingController _textEditingController = TextEditingController();
   String _text = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController.addListener(_printLatestValue);
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
+  }
 
   void _handleText(String e) {
     setState(() {
       _text = e;
     });
+  }
+
+  void _printLatestValue() {
+    print("入力状況:${_textEditingController.text}");
   }
 
   @override
@@ -37,21 +54,21 @@ class _ChangeFormState extends State<ChangeForm> {
             enabled: true,
             maxLength: 10,
             maxLengthEnforcement: MaxLengthEnforcement.none,
-            style: const TextStyle(color: Colors.black),
-            obscureText: true,
-            maxLines: 1,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
-            ],
-            decoration: const InputDecoration(
-              icon: Icon(Icons.face),
-              hintText: '年齢を入力してください',
-              labelText: '年齢 *',
-            ),
+            obscureText: false,
+            controller: _textEditingController,
             onChanged: _handleText,
+            onSubmitted: _submission,
           )
         ],
       ),
     );
+  }
+
+  void _submission(String e) {
+    print(_textEditingController.text);
+    _textEditingController.clear();
+    setState(() {
+      _text = '';
+    });
   }
 }
