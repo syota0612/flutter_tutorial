@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,64 +11,63 @@ class ChangeForm extends StatefulWidget {
 }
 
 class _ChangeFormState extends State<ChangeForm> {
-  final TextEditingController _textEditingController = TextEditingController();
-  String _text = '';
+  final _formKey = GlobalKey<FormState>();
 
-  @override
-  void initState() {
-    super.initState();
-    _textEditingController.addListener(_printLatestValue);
-  }
-
-  @override
-  void dispose() {
-    _textEditingController.dispose();
-    super.dispose();
-  }
-
-  void _handleText(String e) {
-    setState(() {
-      _text = e;
-    });
-  }
-
-  void _printLatestValue() {
-    print("入力状況:${_textEditingController.text}");
-  }
+  final String _name = '';
+  final String _email = '';
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(50.0),
-      child: Column(
-        children: <Widget>[
-          Text(
-            "$_text",
-            style: const TextStyle(
-              color: Colors.blueAccent,
-              fontSize: 30.0,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          TextField(
-            enabled: true,
-            maxLength: 10,
-            maxLengthEnforcement: MaxLengthEnforcement.none,
-            obscureText: false,
-            controller: _textEditingController,
-            onChanged: _handleText,
-            onSubmitted: _submission,
-          )
-        ],
-      ),
-    );
+    return Form(
+        key: this._formKey,
+        child: Container(
+            padding: const EdgeInsets.all(50.0),
+            child: Column(children: <Widget>[
+              TextFormField(
+                  enabled: true,
+                  maxLength: 20,
+                  maxLengthEnforcement: MaxLengthEnforcement.none,
+                  obscureText: false,
+                  autovalidateMode: AutovalidateMode.disabled,
+                  decoration: const InputDecoration(
+                    hintText: 'お名前を教えてください',
+                    labelText: '名前*',
+                  ),
+                  validator: (value) {
+                    return value!.isEmpty ? '必須入力です' : null;
+                  },
+                  onSaved: (value) {
+                    this._name != value;
+                  }),
+              TextFormField(
+                maxLength: 100,
+                autovalidateMode: AutovalidateMode.disabled,
+                decoration: const InputDecoration(
+                  hintText: '連絡先を教えてください。',
+                  labelText: 'メールアドレス *',
+                ),
+                validator: (value) {
+                  print(value);
+                  return value!.contains('@') ? null : 'アットマーク「＠」がありません。';
+                },
+                onSaved: (value) {
+                  this._email != value;
+                },
+              ),
+              ElevatedButton(
+                onPressed: _submission,
+                child: const Text('保存'),
+              ),
+            ])));
   }
 
-  void _submission(String e) {
-    print(_textEditingController.text);
-    _textEditingController.clear();
-    setState(() {
-      _text = '';
-    });
+  void _submission() {
+    if (this._formKey.currentState!.validate()) {
+      this._formKey.currentState!.save();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Processing Data')));
+      print(this._name);
+      print(this._email);
+    }
   }
 }
