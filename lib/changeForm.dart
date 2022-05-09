@@ -40,10 +40,13 @@ class _ChangeFormState extends State<ChangeForm> {
             style: const TextStyle(color: Colors.black),
             obscureText: true,
             maxLines: 1,
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.digitsOnly,
+            ],
             decoration: const InputDecoration(
               icon: Icon(Icons.face),
-              hintText: 'お名前を教えてください',
-              labelText: '名前 *',
+              hintText: '年齢を入力してください',
+              labelText: '年齢 *',
             ),
             onChanged: _handleText,
           )
