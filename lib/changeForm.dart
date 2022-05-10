@@ -11,63 +11,33 @@ class ChangeForm extends StatefulWidget {
 }
 
 class _ChangeFormState extends State<ChangeForm> {
-  final _formKey = GlobalKey<FormState>();
+  bool _flag = false;
 
-  final String _name = '';
-  final String _email = '';
+  void _handleCheckbox(bool? e) {
+    setState(() {
+      _flag = e!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-        key: this._formKey,
-        child: Container(
-            padding: const EdgeInsets.all(50.0),
-            child: Column(children: <Widget>[
-              TextFormField(
-                  enabled: true,
-                  maxLength: 20,
-                  maxLengthEnforcement: MaxLengthEnforcement.none,
-                  obscureText: false,
-                  autovalidateMode: AutovalidateMode.disabled,
-                  decoration: const InputDecoration(
-                    hintText: 'お名前を教えてください',
-                    labelText: '名前*',
-                  ),
-                  validator: (value) {
-                    return value!.isEmpty ? '必須入力です' : null;
-                  },
-                  onSaved: (value) {
-                    this._name != value;
-                  }),
-              TextFormField(
-                maxLength: 100,
-                autovalidateMode: AutovalidateMode.disabled,
-                decoration: const InputDecoration(
-                  hintText: '連絡先を教えてください。',
-                  labelText: 'メールアドレス *',
-                ),
-                validator: (value) {
-                  print(value);
-                  return value!.contains('@') ? null : 'アットマーク「＠」がありません。';
-                },
-                onSaved: (value) {
-                  this._email != value;
-                },
+    return Container(
+        padding: const EdgeInsets.all(50.0),
+        child: Column(
+          children: <Widget>[
+            Center(
+              child: Icon(
+                Icons.thumb_up,
+                color: _flag ? Colors.orange[700] : Colors.grey[500],
+                size: 100.0,
               ),
-              ElevatedButton(
-                onPressed: _submission,
-                child: const Text('保存'),
-              ),
-            ])));
-  }
-
-  void _submission() {
-    if (this._formKey.currentState!.validate()) {
-      this._formKey.currentState!.save();
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Processing Data')));
-      print(this._name);
-      print(this._email);
-    }
+            ),
+            Checkbox(
+              activeColor: Colors.blue,
+              value: _flag,
+              onChanged: _handleCheckbox,
+            ),
+          ],
+        ));
   }
 }
