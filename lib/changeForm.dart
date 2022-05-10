@@ -22,18 +22,18 @@ class _ChangeFormState extends State<ChangeForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(50.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: <Widget>[
-            Center(
-              child: Icon(
+            CheckboxListTile(
+              activeColor: Colors.blue,
+              title: const Text('チェックボックス'),
+              subtitle: const Text('チェックボックスのサブタイトル'),
+              secondary: Icon(
                 Icons.thumb_up,
                 color: _flag ? Colors.orange[700] : Colors.grey[500],
-                size: 100.0,
               ),
-            ),
-            Checkbox(
-              activeColor: Colors.blue,
+              controlAffinity: ListTileControlAffinity.leading,
               value: _flag,
               onChanged: _handleCheckbox,
             ),
