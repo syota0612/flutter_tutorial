@@ -11,31 +11,51 @@ class ChangeForm extends StatefulWidget {
 }
 
 class _ChangeFormState extends State<ChangeForm> {
-  bool _flag = false;
+  String _type = '';
 
-  void _handleCheckbox(bool? e) {
-    setState(() {
-      _flag = e!;
-    });
+  void _handleRadio(String? e) => setState(() {
+        _type = e!;
+      });
+
+  IconData _changeIcon(String e) {
+    IconData icon;
+    switch (e) {
+      case 'thumb_up':
+        icon = Icons.thumb_up;
+        break;
+      case 'favorite':
+        icon = Icons.favorite;
+        break;
+      default:
+        icon = Icons.thumb_up;
+    }
+    return icon;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(50.0),
         child: Column(
           children: <Widget>[
-            CheckboxListTile(
-              activeColor: Colors.blue,
-              title: const Text('チェックボックス'),
-              subtitle: const Text('チェックボックスのサブタイトル'),
-              secondary: Icon(
-                Icons.thumb_up,
-                color: _flag ? Colors.orange[700] : Colors.grey[500],
+            Center(
+              child: Icon(
+                _changeIcon(_type),
+                color: Colors.orange[700],
+                size: 100.0,
               ),
-              controlAffinity: ListTileControlAffinity.leading,
-              value: _flag,
-              onChanged: _handleCheckbox,
+            ),
+            Radio(
+              activeColor: Colors.blue,
+              value: 'thumb_up',
+              groupValue: _type,
+              onChanged: _handleRadio,
+            ),
+            Radio(
+              activeColor: Colors.orange,
+              value: 'favorite',
+              groupValue: _type,
+              onChanged: _handleRadio,
             ),
           ],
         ));
