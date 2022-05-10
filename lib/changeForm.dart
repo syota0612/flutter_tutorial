@@ -35,7 +35,7 @@ class _ChangeFormState extends State<ChangeForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(50.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: <Widget>[
             Center(
@@ -45,14 +45,22 @@ class _ChangeFormState extends State<ChangeForm> {
                 size: 100.0,
               ),
             ),
-            Radio(
+            RadioListTile(
+              secondary: const Icon(Icons.thumb_up),
               activeColor: Colors.blue,
+              controlAffinity: ListTileControlAffinity.trailing,
+              title: const Text('Good'),
+              subtitle: const Text('Goodアイコンの表示'),
               value: 'thumb_up',
               groupValue: _type,
               onChanged: _handleRadio,
             ),
-            Radio(
+            RadioListTile(
+              secondary: const Icon(Icons.favorite),
               activeColor: Colors.orange,
+              controlAffinity: ListTileControlAffinity.trailing,
+              title: const Text('Favorite'),
+              subtitle: const Text('Favoriteアイコンの表示'),
               value: 'favorite',
               groupValue: _type,
               onChanged: _handleRadio,
